@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+
+
+.mainAdmin{
+  display: flex;
+  color: black;
+}
+
+
+/* Admin Page */
+
+  .adminHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: var(--nav-size);
+    background-color: #720E9E;
+    padding: 5px 10px;
+  }
+  
+  .adminHeader button{
+    background: none;
+    border: none;
+  }
+ 
+  .adminHeaderLogo{
+    width: 28px;
+    border-radius: 50%;
+  }
+  
+  .adminHeaderLogo:hover{
+    filter: brightness(80%);
+    cursor: pointer;
+  }
+
+  /* Navbar Drop Down */
+
+.dropDownList{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    background-color: #E6E6FA;
+    border: var(--border);
+  
+    position: absolute;
+    right: 5px;
+    top:35px;
+    height: 80px;
+    border-radius: var(--border-radius);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  .dropDownList li{
+    width: 90%;
+    border-radius: 5px;
+    padding: 7px;
+    transition: background-color 0.2s;
+    background-color: #fbfdff;
+    cursor: pointer;
+    margin: 2px;
+    }
+    .dropDownList li:hover{
+      background-color:#cecef8;
+     
+      }
+  .dropDownList li a{
+  text-decoration: none;
+  font-weight: 700;
+  color: black;
+  }
+  
+
+  /* Admin Sidebar */
+
+  .adminSidebarContainer{
+    background-color: #E6E6FA;
+    width: 200px;
+    min-width: 200px;
+    display: flex;
+    height: calc(100vh - var(--nav-size));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+  }
+
+  .adminSidebarList{
+    list-style-type: none;
+  }
+
+  .adminSidebarList a{
+    text-decoration: none;
+  }
+  
+  .adminSidebarList a.active {
+    background-color: #b7b7c8;
+  } 
+  
+
+  .adminSidebarContainer > h3 {
+    margin: 30px 10px;
+  }
+
+  .adminSidebarContainer ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: auto;
+  }
+
+  .adminSidebarContainer ul a{
+    width: 95%;
+    background-color: rgb(248, 248, 248);
+    
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s background-color ease-in;
+    font-size: 0.8rem;
+  }
+
+  .adminSidebarContainer ul a:hover{
+    background-color: rgb(255, 255, 255);
+    font-weight: 600;
+  }
+
+
+
+  /* Admin main Create User && Create Task*/
+
+  .createUserContainer, .createTaskContainer{
+    width: 100%;
+    background-color: aliceblue;
+
+  }
+
+  .createUserContainer h2, .createTaskContainer h2{
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  .createUserContainer hr, .createTaskContainer hr{
+    width: 50%;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .createUserContainer form{
+    text-align: center;
+    padding: 40px
+  }
+
+
+  .AdminformNid, .AdminformName, .AdminformRole, .AdminformDomain{
+    padding-bottom: 20px;
+  }
+  .AdminformNid label, .AdminformName label{
+    margin-right: 30px;
+  }
+
+  .AdminformRole > :first-child{
+    margin-right: 30px;
+  }
+
+  .AdminformRole  label:not(:first-child){
+    padding-right: 10px;
+  }
+
+  .AdminformDomain > :first-child {
+    margin-right: 20px;
+  }
+
+  .AdminformDomain select{
+    width: 100px;
+    text-align: center;
+    height: 20px;
+  }
+
+  .AdminformButton{
+    margin-top: 20px;
+  }
+
+  .AdminformButton button{
+    margin: 0 20px;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0.1px solid #000;
+    cursor: pointer;
+  }
+
+  .AdminformButton button:hover{
+    background-color: #e6e5e5;
+  }
+
+
+  /* Admin create task Page */
+
+  .createTaskTableContainer{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    
+  }
+  .interTaskContainer{
+    width: 90%;
+    overflow: auto;
+  }
+
+  .interTaskContainer table,.interTaskContainer th, .interTaskContainer td{
+    padding: 0.4rem;
+  }
+  .interTaskContainer table{
+    width: 90%;
+    border-radius: 5px;
+    border-collapse: collapse;
+    
+  
+  }
+  .interTaskContainer thead{
+    background-color: rgba(169, 155, 155, 0.107);
+    
+    border: 1px solid #0005;
+  }
+
+  .interTaskContainer thead tr th{ 
+    border: 1px solid #0005;
+  }
+
+  .interTaskContainer tbody{
+    background-color: #fff8;
+  }
+
+
+  /* Add Task container */
+
+  .createTaskAddTask{
+    text-align: center;
+    margin-top: 10px;
+  }
+  .createTaskAddButton{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 0.1px solid #0006;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+   
+  }
+  .createTaskAddButton:hover{
+    transform:  scale(1.07);
+    background-color: #ebebeb;
+  }
+
+  

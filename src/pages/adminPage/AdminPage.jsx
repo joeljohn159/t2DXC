@@ -1,10 +1,17 @@
+import TaskModal from "../../features/TaskModal.jsx";
 import AdminHeader from "./components/AdminHeader.jsx";
+import AdminSidebar from "./components/AdminSidebar.jsx";
+import { Outlet} from "react-router-dom";
 
 export default function UserPage(){
     return (
         <>
-        <h2>I am Main AdminPage! New changes sdsd</h2>
         <AdminHeader />
+        <div className="mainAdmin">
+            <AdminSidebar />
+            
+            <Outlet></Outlet>
+        </div>
         </>
     );
 }

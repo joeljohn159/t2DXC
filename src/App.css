@@ -1,0 +1,12 @@
+/* Define Global Variables*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+:root{
+  --bg: #720E9E;
+  --text-color: #fff;
+  --nav-size: 40px;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+  --speed: 500ms;
+  font-family: 'poppins';
+}

@@ -1,0 +1,50 @@
+{
+  "user": [
+    {
+      "n-id": "n1626202",
+      "name": "Joel John",
+      "isUser": true,
+      "isReviewer": true,
+      "isAdmin": true,
+      "CreatedBy": "XYZ",
+      "LatestUpdateTimeStamp": "21-09-2024 19:34:34PM",
+      "id": "4a39"
+    },
+    {
+      "id": "0df3",
+      "nID": "n1626202",
+      "name": "",
+      "isUser": true,
+      "isReviewer": false,
+      "isAdmin": false,
+      "domain": "Surety",
+      "createdBy": ""
+    },
+    {
+      "id": "da30",
+      "nID": "n1626202",
+      "name": "",
+      "isUser": false,
+      "isReviewer": true,
+      "isAdmin": false,
+      "domain": "Surety",
+      "createdBy": ""
+    }
+  ],
+  "task": [
+    {
+      "taskID": "Autogenerate",
+      "taskName": "SuretyHC",
+      "taskSOPLink": "https://www.google.com",
+      "taskDescription": "Perform Surety HC",
+      "taskReccuring": "True",
+      "taskRecuringVal": "VAL",
+      "Tasktime": "10PM",
+      "TaskSLA": "2h",
+      "DomainName": "Surety",
+      "CreatedBy": "Joel John",
+      "LatestUpdateTimeStamp": "21-09-2024 19:34:34PM",
+      "id": "c7c5"
+    }
+  ]
+}

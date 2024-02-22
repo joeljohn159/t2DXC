@@ -1,0 +1,49 @@
+
+.taskModalContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0005;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+.taskModalInnerContainer{
+    width: 70%;
+    height: 80%;
+    background-color: #749effb9;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.taskModalInnerContainer form{
+    padding: 20px;
+
+}
+
+.taskModalInnerContainer form div{
+    padding: 10px;
+    
+}
+.taskModalInnerContainer form div:last-child{
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
+.taskModalInnerContainer form div:last-child button{
+    cursor: pointer;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+    border: 0.5px solid #fff8;
+}
+
