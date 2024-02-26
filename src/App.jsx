@@ -1,16 +1,17 @@
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import './App.css';
-import UserLogin from './pages/userLogin/UserLogin.jsx';
-import AdminPage from './pages/adminPage/AdminPage.jsx';
+import AdminPage  from './pages/adminPage/AdminPage.jsx';
 import CreateUser from './pages/adminPage/components/CreateUser.jsx';
-import CreateTask from './pages/adminPage/components/CreateTask.jsx';
+import CreateTask,{action as saveTaskAction, loader as taskLoader} from './pages/adminPage/components/CreateTask.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
   {path:'/admin', element: <AdminPage/>,
+  errorElement: <ErrorPage/> ,
   children:[
     {path:'createUser',element: <CreateUser/> },
-    {path:'createTask',element: <CreateTask/> }
+    {path:'createTask',element: <CreateTask/>,loader: taskLoader ,action: saveTaskAction  }
   ]
 },
 ])

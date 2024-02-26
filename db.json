@@ -11,40 +11,80 @@
       "id": "4a39"
     },
     {
-      "id": "0df3",
-      "nID": "n1626202",
-      "name": "",
-      "isUser": true,
-      "isReviewer": false,
-      "isAdmin": false,
-      "domain": "Surety",
-      "createdBy": ""
-    },
-    {
-      "id": "da30",
+      "id": "b46a",
       "nID": "n1626202",
       "name": "",
       "isUser": false,
       "isReviewer": true,
       "isAdmin": false,
       "domain": "Surety",
-      "createdBy": ""
+      "createdBy": "",
+      "timeStamp": "Sat Feb 24 2024 08:56:00 GMT-0500 (Eastern Standard Time)"
+    },
+    {
+      "id": "e13c",
+      "nID": "n1626998",
+      "name": "",
+      "isUser": true,
+      "isReviewer": true,
+      "isAdmin": true,
+      "domain": "Surety",
+      "createdBy": "",
+      "timeStamp": "Mon Feb 26 2024 00:59:59 GMT-0500 (Eastern Standard Time)"
+    },
+    {
+      "id": "6a74",
+      "nID": "n1626009",
+      "name": "",
+      "isUser": false,
+      "isReviewer": true,
+      "isAdmin": false,
+      "domain": "GCC",
+      "createdBy": "",
+      "timeStamp": "Mon Feb 26 2024 04:30:28 GMT-0500 (Eastern Standard Time)"
+    },
+    {
+      "id": "9707",
+      "nID": "n1626000",
+      "name": "",
+      "isUser": true,
+      "isReviewer": false,
+      "isAdmin": false,
+      "domain": "Surety",
+      "createdBy": "",
+      "timeStamp": "Mon Feb 26 2024 08:19:15 GMT-0500 (Eastern Standard Time)"
     }
   ],
   "task": [
     {
-      "taskID": "Autogenerate",
-      "taskName": "SuretyHC",
+      "taskID": "NA",
+      "taskName": "SuretyHC updated 1",
       "taskSOPLink": "https://www.google.com",
-      "taskDescription": "Perform Surety HC",
+      "taskDescription": "Perform Surety HC updated",
       "taskReccuring": "True",
-      "taskRecuringVal": "VAL",
-      "Tasktime": "10PM",
-      "TaskSLA": "2h",
-      "DomainName": "Surety",
-      "CreatedBy": "Joel John",
-      "LatestUpdateTimeStamp": "21-09-2024 19:34:34PM",
+      "taskRecVal": "NA",
+      "taskTime": "10:03",
+      "taskSLA": "10:35",
+      "taskAtt": "on",
+      "domainName": "NA",
+      "createdBy": "Joel",
+      "lastUpdatedTime": "NA",
       "id": "c7c5"
+    },
+    {
+      "id": "1hnibmmv003a6814b0b6e54",
+      "taskID": "NA",
+      "taskName": "Test 1  New",
+      "taskSOPLink": "https://yahoo.in",
+      "taskDescription": "new task\n",
+      "taskReccuring": "yes",
+      "taskRecVal": "NA",
+      "taskTime": "04:25",
+      "taskSLA": "04:30",
+      "taskAtt": "on",
+      "domainName": "NA",
+      "createdBy": "Joel",
+      "lastUpdatedTime": "NA"
     }
   ]
 }

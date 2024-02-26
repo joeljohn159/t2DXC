@@ -26,8 +26,7 @@ export default function CreateUser(){
     async function handleCreateUser(event){
         event.preventDefault();
 
-        let x = handleTimeStamp()
-        console.log(userData)
+        const x = CurrentDateTime()
         try{
             setIsOpen(true)
             const resData = await createUser({...userData, timeStamp: x});
@@ -52,16 +51,6 @@ export default function CreateUser(){
         
     }
 
-    // Get Current Date and time
-    function handleTimeStamp(){
-        let timeDate = CurrentDateTime();
-        setuserdata(prevData =>{
-            return {
-                ...prevData,
-                timeStamp : timeDate
-            }
-        })
-    }
 
     // function to handle userData change
     function handleUserData(identifier, value){
@@ -112,24 +101,24 @@ console.log("TEST")
             <form onSubmit={handleCreateUser}>
                 <div className="AdminformNid">
                     <label htmlFor="nID">User n-ID :</label>
-                    <input type="text" onChange={()=>handleUserData('nID',event.target.value)} defaultValue={userData.nID} required minLength={8} maxLength={8} onBlur={handleValidateNID}/>
+                    <input type="text" onChange={(event)=>handleUserData('nID',event.target.value)} defaultValue={userData.nID} required minLength={8} maxLength={8} onBlur={handleValidateNID}/>
                 </div>
                 <div className="AdminformName">
                     <label htmlFor="name">User Name :</label>
-                    <input disabled defaultValue={userData.name } type="text" onChange={()=>handleUserData('name',event.target.value)}  required/>
+                    <input disabled defaultValue={userData.name } type="text" onChange={(event)=>handleUserData('name',event.target.value)}  required/>
                 </div>
 
                 <div className="AdminformRole">
                         <label>User Role :</label>
-                            <label><input type="checkbox" id="user" name="user" onChange={()=>handleUserData('isUser',event.target.checked)} value={userData.isUser}/>User</label>
-                            <label><input type="checkbox" id="reviewer" name="reviewer" onChange={()=>handleUserData('isReviewer',event.target.checked)} value={userData.isReviewer} />Reviewer</label>
-                            <label><input type="checkbox" id="admin" name="admin" onChange={()=>handleUserData('isAdmin',event.target.checked)}  value={userData.isAdmin}/>Admin</label>
+                            <label><input type="checkbox" id="user" name="user" onChange={(event)=>handleUserData('isUser',event.target.checked)} value={userData.isUser}/>User</label>
+                            <label><input type="checkbox" id="reviewer" name="reviewer" onChange={(event)=>handleUserData('isReviewer',event.target.checked)} value={userData.isReviewer} />Reviewer</label>
+                            <label><input type="checkbox" id="admin" name="admin" onChange={(event)=>handleUserData('isAdmin',event.target.checked)}  value={userData.isAdmin}/>Admin</label>
                         
                        
                 </div>
                 <div className="AdminformDomain">
                     <label htmlFor="role">Domain :</label>
-                    <select name="domain" id="domain" onChange={()=>handleUserData('domain',event.target.value)} value={userData.domain} required>
+                    <select name="domain" id="domain" onChange={(event)=>handleUserData('domain',event.target.value)} value={userData.domain} required>
                         <option value="" defaultValue={null}  hidden>Select</option>
                         <option value="Surety">Surety</option>
                         <option value="GCC">GCC</option>

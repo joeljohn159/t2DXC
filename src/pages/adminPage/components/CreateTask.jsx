@@ -1,77 +1,47 @@
 import { useState } from 'react';
 import '../AdminPage.css';
 import TaskModal from '../../../features/TaskModal';
-
-const TASKS = [{
-    taskID : '1',
-    taskName : 'Health Check',
-    taskSOPLink : 'https://google.com',
-    taskDesc : 'Perform regular HC at 7AM',
-    taskRec : 'DL',
-    taskRecVal : '1010101',
-    taskTime : '07:00 AM',
-    taskSLA : '07:30 AM',
-    domainName : 'Surety',
-    creaaedBy : 'admin',
-    taskAtt: true,
-    lastUpdatedTime : '21-09-2024 19:34:34PM'
-
-},{
-    taskID : '2GCC',
-    taskName : 'ACES count',
-    taskSOPLink : 'https://google.com',
-    taskDesc : 'Perform regular HC at 12AM',
-    taskRec : 'DL',
-    taskRecVal : '1110101',
-    taskTime : '06:00 PM',
-    taskSLA : '07:20 PM',
-    domainName : 'Surety',
-    createdBy : 'admin',
-    lastUpdatedTime : '21-09-2024 19:34:34PM'
-
-},{
-    taskID : '3',
-    taskName : 'Clear Error',
-    taskSOPLink : 'https://google.com',
-    taskDesc : 'Perform regular HC at 7AM',
-    taskRec : 'DL',
-    taskRecVal : '1010101',
-    taskTime : '8:00 AM',
-    taskSLA : '08:30 AM',
-    domainName : 'ExpRs',
-    createdBy : 'admin',
-    lastUpdatedTime : '26-09-2024 19:34:34PM'
-
-},{
-    taskID : '4',
-    taskName : 'ACES checklist',
-    taskSOPLink : 'https://google.com',
-    taskDesc : 'Perform regular HC at 7AM',
-    taskRec : 'DL',
-    taskRecVal : '1010101',
-    taskTime : '11:00 AM',
-    taskSLA : '12:30 AM',
-    domainName : 'GCC',
-    createdBy : 'admin',
-    lastUpdatedTime : '21-09-2024 20:34:34PM'
-
-}]
-
+import { json , redirect, useLoaderData   } from 'react-router-dom';
+import {useSubmit} from 'react-router-dom'
+import { editDelTask, loadTask } from '../../../services/adminHttp';
 
 
 export default function CreateTask(){
-
+    
     const [openTaskModal, setOpenTaskModal] = useState(false);
+    const [testTask , setTestTask] = useState(null);
+    const [method, setmethod] = useState();
+    const submit = useSubmit();
+    
+
+    const TASKS = useLoaderData();
 
     function handleTaskCreateModal(){
+        setmethod('post');
+        setTestTask();
         setOpenTaskModal(true)
-        }
+    }
+
     function handleCloseModal(){
         setOpenTaskModal(false)
     }
+
+    function handleEditTask(taskList){
+        setmethod('patch')
+        setOpenTaskModal(true)
+        setTestTask(taskList);
+    }
+    function handleDeleteTask(task){
+        const deleteorNot = confirm("You wanna delete the task?")
+        if(deleteorNot){
+            submit(task,{method:'delete'} , action='admin/createTask')
+        }else{
+            return  
+        }
+    }
     return (
         <>
-        {openTaskModal && <TaskModal formData={''} closeModal={handleCloseModal}/>}
+        {openTaskModal && <TaskModal formData={testTask} method={method} closeModal={handleCloseModal}/>}
         <div className="createTaskContainer">
             <h2>Create Task</h2>
             <hr />
@@ -93,17 +63,18 @@ export default function CreateTask(){
                         </thead>
                         <tbody>
                             {TASKS.map((task) => {
-                           return ( <tr key={task.taskID}>
+                           return ( <tr key={task.id}>
                                 <td>{task.taskName}</td>
-                                <td><a href={task.taskSOPLink} target="_blank">{task.taskName}</a></td>
-                                <td style={{width:'200px'}}>{task.taskDesc}</td>
+                                <td><a href={task.taskSOPLink} target="_blank">Link</a></td>
+                                <td style={{width:'200px'}}>{task.taskDescription}</td>
                                 <td>{task.taskTime}</td>
                                 <td>{task.taskSLA}</td>
-                                <td>{task.taskRec}</td>
+                                <td>{task.taskReccuring}</td>
                                 <td><input type="checkbox" disabled checked/></td>
-                                <td><button>Edit</button><button>Delete</button></td>
+                                <td style={{display:'flex',justifyContent:'space-around'}}>
+                                    <button style={{cursor:'pointer'}} onClick={() => handleEditTask(task)}>Edit</button>
+                                    <button style={{cursor:'pointer'}} onClick={()=>handleDeleteTask(task)}>Delete</button></td>
                             </tr>);
-                                console.log(task);
                             })}
                             
                         </tbody>
@@ -122,7 +93,75 @@ export default function CreateTask(){
 }
 
 
-export function action({request,params}){
-    console.log('Request',request);
-    console.log('Params',params)
+export async function action({request}){
+    // let url = 'http://localhost:8000/task/';
+    const method = await request.method;
+    const taskData = await request.formData();
+    console.log(method);
+    const task = {
+        id: taskData.get('id'),
+        taskID : 'NA',
+        taskName : taskData.get('taskName'),
+        taskSOPLink : taskData.get('taskSOPLink'),
+        taskDescription : taskData.get('taskDescription'),
+        taskReccuring : taskData.get('taskReccuring'),
+        taskRecVal : 'NA',
+        taskTime : taskData.get('taskTime'),
+        taskSLA : taskData.get('taskSLA'),
+        taskAtt : taskData.get('taskAtt'),
+        domainName : 'NA',
+        createdBy : 'Joel',  
+        lastUpdatedTime : 'NA'
+    }
+    try{
+        const data = await editDelTask(method, task);
+        return redirect('/admin/createTask')
+    }catch(error){
+        throw json({message:'Error Editing or Deleting Task. Kindly try again Later! '},{status:'500'});
+    }
+}  
+
+//     if(method === 'DELETE'){
+//         url =  url+`${taskData.get('id')}`;
+//         const response = await fetch(url, 
+//             {
+//                 method:method,
+//             })
+//             if(!response.ok){
+//                 throw json({message:'Error Deleting Data'},{status:'500'})
+//             }
+//             return redirect('/admin/createTask');
+//     }
+//     else{
+
+//     if(method === 'PATCH'){
+//        url =  url+`${taskData.get('id')}`;
+//     }
+
+//     const response = await fetch(url, 
+//     {
+//         method:method,
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(task)
+
+//     })
+
+//     if(!response.ok){
+//         throw json({message:'Error'},{status:'500'})
+//     }
+//     return redirect('/admin/createTask');
+// }
+
+
+
+export async function loader(){
+    
+    try{
+        const data = await loadTask()
+        return data.data;
+    }catch(error){
+        throw json({message:'Error fetching Task data. Please navigate to Home and Try again !'},{status:'500'})
+    }
+   
+
 }

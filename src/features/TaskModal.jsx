@@ -1,41 +1,67 @@
+import { action } from "../pages/adminPage/components/CreateTask";
+import uniqueID from "../utils/uniqueID";
 import classes from "./TaskModal.module.css";
-import {Form} from 'react-router-dom';
+import {useSubmit, Form } from 'react-router-dom';
 
-export default function TaskModal({formData, closeModal}){
+export default function TaskModal({formData, method, closeModal}){
+
+    
+    const submit = useSubmit();
+    const [formError , setFormError] = useState(false);
+
+    
+
+    function handleSave(event){
+        event.preventDefault();
+        
+        
+        let formData = event.currentTarget.form;
+        console.log(event)
+        submit({formData }, {method:method});  
+        closeModal();
+    }
+
+    function handleClose(){
+        formData = '';
+        closeModal()
+    }
     return (
         <div className={classes.taskModalContainer}>
             <div className={classes.taskModalInnerContainer}>
-            <Form method="post">
+            <Form  >
+                <div>
+                    <input type="text" name="id" id="id" defaultValue={formData ? formData.id : uniqueID()} hidden />
+                </div>
                 <div>
                     <label htmlFor="taskName">Task name : </label>
-                    <input type="text" name="taskName" id="taskName" required defaultValue={formData ? formData.taskName : ''}/>
+                    <input type="text" name="taskName" id="taskName" defaultValue={formData ? formData.taskName : ''} required/>
                 </div>
                 <div>
                     <label htmlFor="taskSOPLink">Task SOP link : </label>
-                    <input type="text" name="taskSOPLink" id="taskSOPLink" required defaultValue={formData ? formData.taskSOPLink : ''}/>
+                    <input type="text" name="taskSOPLink" id="taskSOPLink" defaultValue={formData ? formData.taskSOPLink : ''} required/>
                 </div>
                 <div style={{display:'flex'}}>
-                    <label htmlFor="taskDesc">Task Description : </label>
-                    <textarea style={{resize:'none',padding:'5px'}} name="taskDesc" id="taskDesc" cols="30" rows="5" required defaultValue={formData ? formData.taskDesc : ''}></textarea>
+                    <label htmlFor="taskDescription">Task Description : </label>
+                    <textarea style={{resize:'none',padding:'5px'}} name="taskDescription" id="taskDescription" cols="30" rows="5"  defaultValue={formData ? formData.taskDescription : ''} required></textarea>
                 </div>
                 <div>
                     <label htmlFor="taskTime">Task Time : </label>
-                    <input type="time" name="taskTime" id="taskTime" required defaultValue={formData ? formData.taskTime : ''}/>
+                    <input type="time" name="taskTime" id="taskTime" defaultValue={formData ? formData.taskTime : ''} required/>
                 </div>
                 <div>
                     <label htmlFor="taskSLA">Task SLA : </label>
-                    <input type="time" name="taskSLA" id="taskSLA" required defaultValue={formData ? formData.taskSLA : ''}/>
+                    <input type="time" name="taskSLA" id="taskSLA" defaultValue={formData ? formData.taskSLA : ''} required/>
                 </div>
                 <div>
-                    <label htmlFor="taskRec">Task Recurrence : </label>
-                    <input type="text" name="taskRec" id="taskRec" required defaultValue={formData ? formData.taskRec : ''}/>
+                    <label htmlFor="taskReccuring">Task Recurrence : </label>
+                    <input type="text" name="taskReccuring" id="taskReccuring" defaultValue={formData ? formData.taskReccuring : ''} required/>
                 </div>
                 <div>
                     <label htmlFor="taskAtt">Task Attachment : </label>
-                    <input type="checkbox" name="taskAtt" id="taskAtt" required defaultChecked={formData ? formData.taskAtt : false}/>
+                    <input type="checkbox" name="taskAtt" id="taskAtt" defaultChecked={formData ? formData.taskAtt : false} />
                 </div>
-                <div><button onClick={closeModal}>Cancel</button>
-                    <button>Save</button>
+                <div ><button type="button" onClick={handleClose}>Cancel</button>
+                    <button type="submit" onClick={handleSave}>Save</button>
                 </div>
             </Form>     
             </div> 
