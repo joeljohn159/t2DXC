@@ -2,6 +2,7 @@ import { useState } from "react";
 import CurrentDateTime from "../../../utils/DateTime";
 import {createUser} from "../../../services/adminHttp";
 import Modal from "../../../features/Modal.jsx"
+import { Link } from "react-router-dom";
 
 export default function CreateUser(){
 
@@ -30,9 +31,10 @@ export default function CreateUser(){
         try{
             setIsOpen(true)
             const resData = await createUser({...userData, timeStamp: x});
+            const errorText = `Success: ${userData.name} (${userData.nID}) is created with role ${ userData.isUser ? 'User ,': '' } ${ userData.isReviewer ? 'Reviewer ,': '' } ${ userData.isAdmin ? 'Admin.': '' } `
             setError(prevData=>{
                 return {
-                    text:'Success: User Created Successfully!',
+                    text: errorText ,
                     status:false,
                     style:{color:'green',fontSize:'14px',marginTop:'15px'}
                 }
@@ -105,7 +107,7 @@ console.log("TEST")
                 </div>
                 <div className="AdminformName">
                     <label htmlFor="name">User Name :</label>
-                    <input disabled defaultValue={userData.name } type="text" onChange={(event)=>handleUserData('name',event.target.value)}  required/>
+                    <input defaultValue={userData.name } type="text" onChange={(event)=>handleUserData('name',event.target.value)}  required/>
                 </div>
 
                 <div className="AdminformRole">
@@ -128,9 +130,14 @@ console.log("TEST")
                 <div className="AdminformButton">
                     <button type="reset" onClick={resetForm}>Discard</button>
                     <button type="submit">Create</button>
+                    <span style={{fontSize:'13px'}}><Link to='/admin/createBulkUser'>Create Bulk Users</Link></span>
+                    
                 </div>
                 <p style={error.style}>{error.text}</p>
             </form>
+
+        
+            
             
         </div>
 

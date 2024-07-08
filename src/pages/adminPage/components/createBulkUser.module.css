@@ -1,0 +1,44 @@
+.createBulkUserContainer{
+    width: 100%;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.createBulkUserContainer hr{
+ width: 20%;
+margin: auto;
+margin-top: 0.5rem;
+}
+
+.createBulkUserContainer form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.createTable{
+   width: 80%;
+}
+
+
+.createTable{
+    font-size: 12px;
+}
+.createTable thead tr th, .createTable tbody tr td{
+    padding: 5px;
+    border: 1px solid #000;
+} 
+.createTable table{
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: aliceblue;
+}
+
+.tableButtons button{
+    cursor: pointer;
+    margin-right: 2px;
+}

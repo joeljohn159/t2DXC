@@ -12,13 +12,15 @@
     background-color: #0005;
     backdrop-filter: blur(5px);
     z-index: 100;
+
+    font-size: 12.8px;
 }
 
 
 .taskModalInnerContainer{
-    width: 70%;
-    height: 80%;
-    background-color: #749effb9;
+    /* width: 40%;
+    height: 80%; */
+    background-color: #E6E6FA;
     border-radius: 10px;
 
     display: flex;
@@ -47,4 +49,68 @@
     border-radius: 5px;
     border: 0.5px solid #fff8;
 }
+.firstRow{
+    display: flex;
+    justify-content: space-between;
+}
+.firstRow div{
+    display: flex;
+    flex-direction: column  ;
+}
 
+.SecondRow{
+    display: flex;
+    justify-content: space-between;
+}
+.SecondRow div{
+    display: flex;
+    flex-direction: column  ;
+}
+
+.time{
+    width: 10rem;
+}
+.buttonInput{
+    width: 11rem;
+    height: 1.8rem;
+}
+.descArea{
+    display: flex;
+    flex-direction: column;
+    margin: 0 0.7rem;
+}
+.thirdRow{
+    display: flex;
+    justify-content: space-between;
+}
+
+.thirdRow div{
+    display: flex;
+    flex-direction: column;
+}
+
+.thirdRow div:last-child{
+    display: flex ;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+
+    position: relative;
+    left: -25px;
+}
+
+.thirdRow div:first-child select{
+    width: 10rem;
+    height: 1.5rem;
+}
+
+.thirdRow div:first-child select:hover{
+    cursor: pointer;
+}
+
+.descArea textarea::placeholder{
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0.5;
+}

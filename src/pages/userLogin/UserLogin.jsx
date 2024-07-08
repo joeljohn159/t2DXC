@@ -1,10 +1,10 @@
 import UserPageHeader from "./components/UserLoginHeader";
+import './UserLogin.css'
 
-export default function UserPage(){
+export default function UserLoginPage(){
     return (
         <>
-        <h2>I am Main UserPage</h2>
-        <UserPageHeader />
+                <UserPageHeader/>
         </>
     );
 }

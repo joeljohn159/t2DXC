@@ -1,0 +1,64 @@
+.loginContainerX{
+    height: 100vh;
+    /* background: linear-gradient(90deg,#fcf4fc,#a59da58e); */
+    background: linear-gradient(90deg,#720E9E,#320c4f);
+
+}
+
+.innerLoginContainer{
+    position: absolute;
+    width: 30rem;
+    height: 25rem;
+    /* background-color: #8640a4; */
+    background-color: #ffffffcc;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    border-radius: 4px;
+    box-shadow: 1px 20px 20px rgba(0, 0, 0, 0.5);
+
+
+}
+
+
+.innerLoginChild{
+    width: 70%;
+    height: 80%;
+    margin: auto;
+    /* background-color: #E6E6FA; */
+    /* background-color: #8640a49c; */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10% 0;
+}
+
+.innerLoginChild div {
+    width: 80%;
+    
+}
+
+.innerLoginChild div select{
+    width: 100%;
+    height:2rem;
+    background-color:#E6E6FA;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.innerLoginChild div select:hover{
+    cursor: pointer;
+}
+
+.innerLoginChild button{
+    width: 5rem;
+    height: 1.8rem;
+    border-radius: 0.3rem;
+    border: 0.3px solid black;
+}
+.innerLoginChild button:hover{
+cursor: pointer;
+}

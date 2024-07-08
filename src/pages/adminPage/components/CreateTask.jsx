@@ -4,6 +4,10 @@ import TaskModal from '../../../features/TaskModal';
 import { json , redirect, useLoaderData   } from 'react-router-dom';
 import {useSubmit} from 'react-router-dom'
 import { editDelTask, loadTask } from '../../../services/adminHttp';
+import { useQuery } from '@tanstack/react-query';
+import { queryClient } from '../../../services/queryClient';
+
+import {motion ,AnimatePresence} from 'framer-motion';
 
 
 export default function CreateTask(){
@@ -13,8 +17,6 @@ export default function CreateTask(){
     const [method, setmethod] = useState();
     const submit = useSubmit();
     
-
-    const TASKS = useLoaderData();
 
     function handleTaskCreateModal(){
         setmethod('post');
@@ -39,6 +41,16 @@ export default function CreateTask(){
             return  
         }
     }
+    
+    const {data , isPending ,   isError , error} = useQuery({
+            queryKey:['tasks'],
+            queryFn : loadTask,
+            staleTime: 10 * 1000, // 10Sec
+    });
+    
+        const test = useLoaderData() // here the loader DATA is same 
+        const TASKS = data;
+
     return (
         <>
         {openTaskModal && <TaskModal formData={testTask} method={method} closeModal={handleCloseModal}/>}
@@ -62,21 +74,25 @@ export default function CreateTask(){
                             </tr>
                         </thead>
                         <tbody>
-                            {TASKS.map((task) => {
-                           return ( <tr key={task.id}>
+                        <AnimatePresence> {TASKS.map((task) => {
+                           return ( <motion.tr 
+                           initial={{y:10,opacity:0}}
+                           animate={{y:0,opacity:1}}
+                           exit={{y:10,opacity:0}}
+                           key={task.id}>
                                 <td>{task.taskName}</td>
                                 <td><a href={task.taskSOPLink} target="_blank">Link</a></td>
                                 <td style={{width:'200px'}}>{task.taskDescription}</td>
                                 <td>{task.taskTime}</td>
                                 <td>{task.taskSLA}</td>
-                                <td>{task.taskReccuring}</td>
-                                <td><input type="checkbox" disabled checked/></td>
+                                <td style={{textAlign:'center'}}>{task.taskReccuring}</td>
+                                <td style={{textAlign:'center'}}><input  type="input" disabled defaultValue={task.taskAtt ? true : false}/></td>
                                 <td style={{display:'flex',justifyContent:'space-around'}}>
                                     <button style={{cursor:'pointer'}} onClick={() => handleEditTask(task)}>Edit</button>
                                     <button style={{cursor:'pointer'}} onClick={()=>handleDeleteTask(task)}>Delete</button></td>
-                            </tr>);
+                            </motion.tr>);
                             })}
-                            
+                            </AnimatePresence>
                         </tbody>
                     </table>
 
@@ -84,8 +100,7 @@ export default function CreateTask(){
 
                 
             </div>
-            <div className="createTaskAddTask">
-                <button className='createTaskAddButton' onClick={handleTaskCreateModal}>+</button>      
+            <div className="createTaskAddTask"><button className='createTaskAddButton' onClick={handleTaskCreateModal}>+</button> 
             </div>
         </div>
         </>
@@ -94,10 +109,10 @@ export default function CreateTask(){
 
 
 export async function action({request}){
-    // let url = 'http://localhost:8000/task/';
+
     const method = await request.method;
     const taskData = await request.formData();
-    console.log(method);
+
     const task = {
         id: taskData.get('id'),
         taskID : 'NA',
@@ -121,6 +136,15 @@ export async function action({request}){
     }
 }  
 
+
+export async function loader(){
+    return queryClient.fetchQuery(
+        {queryKey:['tasks'],
+        queryFn : loadTask,
+    }
+    )
+
+}
 //     if(method === 'DELETE'){
 //         url =  url+`${taskData.get('id')}`;
 //         const response = await fetch(url, 
@@ -153,15 +177,3 @@ export async function action({request}){
 // }
 
 
-
-export async function loader(){
-    
-    try{
-        const data = await loadTask()
-        return data.data;
-    }catch(error){
-        throw json({message:'Error fetching Task data. Please navigate to Home and Try again !'},{status:'500'})
-    }
-   
-
-}

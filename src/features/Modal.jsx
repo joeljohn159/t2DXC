@@ -23,7 +23,6 @@ export default function Modal({open, children}){
         textAlign:'center',
         borderRadius:'5px'
     }
-    console.log("inside Modal")
     return (
     <>
         <div style={OVERLAY}></div>

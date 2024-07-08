@@ -1,6 +1,6 @@
 function CurrentDateTime(){
     let currentDateTime = new Date();
-    return currentDateTime.toString();
+    return currentDateTime.toISOString();
 }
 export default CurrentDateTime;
 

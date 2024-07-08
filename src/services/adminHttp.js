@@ -1,5 +1,5 @@
 import axios from "axios";
-import { json, redirect } from "react-router-dom";
+import { json } from "react-router-dom";
 
 const URL = 'http://localhost:8000/';
 
@@ -11,27 +11,40 @@ export const createUser = async(user) =>{
         return userResponse;
     }catch(error){
         console.log(error);
-        throw error
+        throw error;
     }
     
+}
+
+//Create Bulk Users
+
+export async function createBulkUser(bulkUser){
+    try{
+        const createBulkUserResponse = await axios.post(URL+'user',...bulkUser);
+        return createBulkUserResponse
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
 }
 
 // Get Tasks
 export const loadTask = async() =>{
     try{
         const response = await axios.get(URL+'task');
-        return response;
+        return response.data;
     }
     catch(error){
-        throw error;
+        throw json({message:'Error fetching Task data. Please navigate to Home and Try again !'},{status:'500'});
     }
 }
+
 
 // Edit or Delete Task
 
 export const editDelTask = async(method, task) => {
     const taskURL = `${URL}task/${task.id}`;
-
+    console.log(task);
     if(method === 'DELETE'){
         try{
             const response = axios.delete(taskURL);
@@ -42,7 +55,7 @@ export const editDelTask = async(method, task) => {
     }
     if(method === 'PATCH'){
         try{
-            const response = axios.patch(taskURL,task);
+            const response = axios.put(taskURL,task);
             return response;
         }catch(error){
             throw error
